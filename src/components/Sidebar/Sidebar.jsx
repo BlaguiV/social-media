@@ -24,7 +24,7 @@ function Sidebar() {
                     </li>
                     <li className='sidebarListItem'>
                         <Bookmark className='sidebarIcon' />
-                        <span className="sidebarListItemText">Bookmarks</span>
+                        <span className="sidebarListItemText">Saved</span>
                     </li>
                     <li className='sidebarListItem'>
                         <Help className='sidebarIcon' />

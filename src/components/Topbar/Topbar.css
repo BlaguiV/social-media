@@ -74,16 +74,6 @@ body {
     outline: none;
 }
 
-.topbarLinks {
-    display: flex;
-    gap: 15px;
-}
-
-.topbarLink {
-    font-size: 14px;
-    cursor: pointer;
-}
-
 .topbarIcons {
     display: flex;
     align-items: center;
@@ -111,8 +101,8 @@ body {
 }
 
 .topbarImg {
-    width: 32px;
-    height: 32px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     object-fit: cover;
 }

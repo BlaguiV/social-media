@@ -1,11 +1,14 @@
 import "./Topbar.css";
 import { Search, Person, Chat, Notifications } from "@mui/icons-material";
 import man from "../../assets/man.jpg"
+import { Link } from "react-router-dom";
 function Topbar() {
     return (
         <div className="topbarContainer">
             <div className="topbarLeft">
-                <span className="logo">Social Media</span>
+                <Link to='/' style={{ textDecoration: "none" }}>
+                    <span className="logo">Social Media</span>
+                </Link>
             </div>
             <div className="topbarCenter">
                 <div className="searchBar">
@@ -17,10 +20,6 @@ function Topbar() {
                 </div>
             </div>
             <div className="topbarRight">
-                <div className="topbarLinks">
-                    <span className="topbarLink">Homepage</span>
-                    <span className="topbarLink">Timeline</span>
-                </div>
                 <div className="topbarIcons">
                     <div className="topbarIconItem">
                         <Person />

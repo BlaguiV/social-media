@@ -3,6 +3,7 @@ import man from '../../assets/man.jpg'
 import { MoreVert } from '@mui/icons-material'
 import postImg from "../../assets/man.jpg"
 import heart from '../../assets/love.png'
+import { Link } from 'react-router-dom'
 function Post() {
     return (
         <div className='post'>

@@ -7,7 +7,7 @@ function Topbar() {
         <div className="topbarContainer">
             <div className="topbarLeft">
                 <Link to='/' style={{ textDecoration: "none" }}>
-                    <span className="logo">Social Media</span>
+                    <span className="logo">Connectify</span>
                 </Link>
             </div>
             <div className="topbarCenter">
@@ -34,7 +34,9 @@ function Topbar() {
                         <span className="topbarBadge">3</span>
                     </div>
                 </div>
-                <img src={man} alt="Profile" className="topbarImg" />
+                <Link to="/profile/:username">
+                    <img src={man} alt="Profile" className="topbarImg" />
+                </Link>
             </div>
         </div>
     );

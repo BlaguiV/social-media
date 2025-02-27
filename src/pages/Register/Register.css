@@ -83,3 +83,8 @@
     font-weight: 500;
     cursor: pointer;
 }
+
+.registerError {
+    color: red;
+    text-align: center;
+}

@@ -1,21 +1,26 @@
 import './Rightbar.css'
 import man from "../../assets/man.jpg"
-import Profile from '../../pages/Profile/Profile'
+
 function Rightbar({ profile }) {
+    const isAuthenticated = localStorage.getItem("token");
 
     const HomeRightbar = () => {
         return (
             <>
-                <h4 className='rightbarTitle'>Online friends</h4>
-                <ul className='rightbarFriendList'>
-                    <li className='rightbarFriend'>
-                        <div className="rightbarProfileImgContainer">
-                            <img className='rightbarProfileImg' src={man} />
-                            <span className='rightbarOnline'></span>
-                        </div>
-                        <span className='rightbarUsername'>Victoria Kovalchuk</span>
-                    </li>
-                </ul>
+                {isAuthenticated ? (
+                    <>
+                        <h4 className='rightbarTitle'>Online friends</h4>
+                        <ul className='rightbarFriendList'>
+                            <li className='rightbarFriend'>
+                                <div className="rightbarProfileImgContainer">
+                                    <img className='rightbarProfileImg' src={man} alt="Friend" />
+                                    <span className='rightbarOnline'></span>
+                                </div>
+                                <span className='rightbarUsername'>Victoria Kovalchuk</span>
+                            </li>
+                        </ul>
+                    </>
+                ) : null}
             </>
         )
     }
@@ -41,27 +46,7 @@ function Rightbar({ profile }) {
                 <h4 className='rightbarTitle'>User friends</h4>
                 <div className='rightbarFollowings'>
                     <div className="rightbarFollowing">
-                        <img src={man} alt="" className="rightbarFollowingImg" />
-                        <span className="rightbarFollowingName">Victoria Kovalchuk</span>
-                    </div>
-                    <div className="rightbarFollowing">
-                        <img src={man} alt="" className="rightbarFollowingImg" />
-                        <span className="rightbarFollowingName">Mikola Naborskii</span>
-                    </div>
-                    <div className="rightbarFollowing">
-                        <img src={man} alt="" className="rightbarFollowingImg" />
-                        <span className="rightbarFollowingName">Tanya Blagui</span>
-                    </div>
-                    <div className="rightbarFollowing">
-                        <img src={man} alt="" className="rightbarFollowingImg" />
-                        <span className="rightbarFollowingName">Mikola Blagui</span>
-                    </div>
-                    <div className="rightbarFollowing">
-                        <img src={man} alt="" className="rightbarFollowingImg" />
-                        <span className="rightbarFollowingName">Victoria Kovalchuk</span>
-                    </div>
-                    <div className="rightbarFollowing">
-                        <img src={man} alt="" className="rightbarFollowingImg" />
+                        <img src={man} alt="Friend" className="rightbarFollowingImg" />
                         <span className="rightbarFollowingName">Victoria Kovalchuk</span>
                     </div>
                 </div>

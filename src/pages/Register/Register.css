@@ -33,7 +33,7 @@
 }
 
 .loginBox {
-    height: 400px;
+    height: 440px;
     padding: 20px;
     background-color: white;
     border-radius: 12px;
@@ -79,7 +79,7 @@
     border: none;
     background-color: rgb(41, 168, 58);
     color: white;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 500;
     cursor: pointer;
 }
@@ -87,4 +87,11 @@
 .registerError {
     color: red;
     text-align: center;
+}
+
+.contAsGuest {
+    text-align: center;
+    color: rgb(175, 8, 144);
+    cursor: pointer;
+    font-weight: bold;
 }

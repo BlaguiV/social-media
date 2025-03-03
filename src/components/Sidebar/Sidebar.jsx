@@ -1,10 +1,15 @@
-import './Sidebar.css'
-import man from "../../assets/man.jpg"
-import { RssFeed, Chat, PlayCircle, Groups, Bookmark, Help, AccountCircle } from "@mui/icons-material"
-import { Link } from 'react-router-dom'
+import './Sidebar.css';
+import man from "../../assets/man.jpg";
+import { RssFeed, Chat, PlayCircle, Groups, Bookmark, Help, AccountCircle, ExitToApp } from "@mui/icons-material";
+import { Link, useNavigate } from 'react-router-dom';
 
 function Sidebar() {
-
+    const isAuthenticated = localStorage.getItem("token");
+    const navigate = useNavigate()
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        navigate('/login')
+    };
 
     return (
         <div className='sidebar'>
@@ -36,23 +41,41 @@ function Sidebar() {
                         <Help className='sidebarIcon' />
                         <span className="sidebarListItemText">Questions</span>
                     </li>
-                    <Link to='/profile/:username' style={{ textDecoration: "none", color: "black" }}>
-                        <li className='sidebarListItem'>
-                            <AccountCircle className='sidebarIcon' />
-                            <span className="sidebarListItemText">Profile</span>
-                        </li>
-                    </Link>
+
+                    {isAuthenticated ? (
+                        <>
+                            <li className='sidebarListItem' onClick={handleLogout}>
+                                <ExitToApp className='sidebarIcon' />
+                                <span className="sidebarListItemText">Log Out</span>
+                            </li>
+                            <Link to='/profile/:username' style={{ textDecoration: "none", color: "black" }}>
+                                <li className='sidebarListItem'>
+                                    <AccountCircle className='sidebarIcon' />
+                                    <span className="sidebarListItemText">Profile</span>
+                                </li>
+                            </Link>
+                        </>
+                    ) : (
+                        <Link to="/login" style={{ textDecoration: "none", color: "black" }}>
+                            <li className='sidebarListItem'>
+                                <AccountCircle className='sidebarIcon' />
+                                <span className="sidebarListItemText">Log In</span>
+                            </li>
+                        </Link>
+                    )}
                 </ul>
                 <hr className='sidebarHr' />
                 <ul className="sidebarFriendList">
-                    <li className="sidebarFriend">
-                        <img className='sidebarFriendImg' src={man} />
-                        <span className='sidebarFriendName'>Vladyslav Blagui</span>
-                    </li>
+                    {isAuthenticated ? (
+                        <li className="sidebarFriend">
+                            <img className='sidebarFriendImg' src={man} />
+                            <span className='sidebarFriendName'>Vladyslav Blagui</span>
+                        </li>
+                    ) : null}
                 </ul>
             </div>
-        </div >
-    )
+        </div>
+    );
 }
 
-export default Sidebar
+export default Sidebar;

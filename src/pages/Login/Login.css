@@ -69,6 +69,7 @@
     text-align: center;
     color: rgb(175, 8, 144);
     cursor: pointer;
+    font-weight: bold;
 }
 
 .loginRegistrationButton {
@@ -87,4 +88,11 @@
 .loginError {
     color: red;
     text-align: center;
+}
+
+.contAsGuest {
+    text-align: center;
+    color: rgb(175, 8, 144);
+    cursor: pointer;
+    font-weight: bold;
 }

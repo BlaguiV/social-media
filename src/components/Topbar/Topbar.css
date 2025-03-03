@@ -106,3 +106,8 @@ body {
     border-radius: 50%;
     object-fit: cover;
 }
+
+.topbarLoginBtn {
+    color: white;
+    cursor: pointer;
+}

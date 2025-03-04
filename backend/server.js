@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const User = require("./Models/User");
+const User = require("./Models/UserModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
@@ -46,7 +46,7 @@ router.post("/login", async (req, res) => {
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
             expiresIn: "1h",
         });
-        res.status(200).json({ message: "Login successful", token });
+        res.status(200).json({ message: "Login successful", token, userId: user._id });
     } catch (err) {
         res.status(500).json({ message: "Server error", error: err.message });
     }

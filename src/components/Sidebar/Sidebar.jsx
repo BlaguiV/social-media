@@ -8,8 +8,11 @@ function Sidebar() {
     const navigate = useNavigate()
     const handleLogout = () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("userId")
         navigate('/login')
     };
+
+    const currentUserId = localStorage.getItem("userId")
 
     return (
         <div className='sidebar'>
@@ -48,7 +51,7 @@ function Sidebar() {
                                 <ExitToApp className='sidebarIcon' />
                                 <span className="sidebarListItemText">Log Out</span>
                             </li>
-                            <Link to='/profile/:username' style={{ textDecoration: "none", color: "black" }}>
+                            <Link to={`/profile/${currentUserId}`} style={{ textDecoration: "none", color: "black" }}>
                                 <li className='sidebarListItem'>
                                     <AccountCircle className='sidebarIcon' />
                                     <span className="sidebarListItemText">Profile</span>

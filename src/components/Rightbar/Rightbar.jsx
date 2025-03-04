@@ -1,8 +1,10 @@
 import './Rightbar.css'
 import man from "../../assets/man.jpg"
-
+import { useParams } from 'react-router-dom';
 function Rightbar({ profile }) {
     const isAuthenticated = localStorage.getItem("token");
+
+    const { age, city, country } = useParams()
 
     const HomeRightbar = () => {
         return (
@@ -32,15 +34,15 @@ function Rightbar({ profile }) {
                 <div className="rightbarInfo">
                     <div className="rightbarInfoItem">
                         <span className="rightbarInfoKey">Age:</span>
-                        <span className="rightbarInfoValue">18</span>
+                        <span className="rightbarInfoValue">{age}</span>
                     </div>
                     <div className="rightbarInfoItem">
                         <span className="rightbarInfoKey">City:</span>
-                        <span className="rightbarInfoValue">Vinnitsya</span>
+                        <span className="rightbarInfoValue">{city}</span>
                     </div>
                     <div className="rightbarInfoItem">
                         <span className="rightbarInfoKey">Country:</span>
-                        <span className="rightbarInfoValue">Ukraine</span>
+                        <span className="rightbarInfoValue">{country}</span>
                     </div>
                 </div>
                 <h4 className='rightbarTitle'>User friends</h4>

@@ -34,7 +34,9 @@ function Login() {
         try {
             const response = await axios.post('http://localhost:5000/auth/login', { email, password })
             const token = response.data.token
+            const userId = response.data.userId
             localStorage.setItem("token", token)
+            localStorage.setItem("userId", userId)
 
             if (rememberMe) {
                 localStorage.setItem("email", email);

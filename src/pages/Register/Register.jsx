@@ -13,12 +13,27 @@ function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (!email.includes("@")) {
+            setError("Invalid email")
+            return
+        }
+
+        if (password.length < 8) {
+            setError("Password must be at least 8 characters long")
+            return
+        }
 
         try {
             const response = await axios.post("http://localhost:5000/auth/register", {
                 username,
                 email,
                 password,
+                bio: "No bio",
+                age: "No info",
+                city: "No info",
+                country: "No info",
+                number: "No info",
+                avatar: "No info"
             });
 
             navigate("/login");

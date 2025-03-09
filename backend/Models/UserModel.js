@@ -5,11 +5,11 @@ const userSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    age: { type: String },
-    bio: { type: String },
-    city: { type: String },
-    country: { type: String },
-    number: { type: String }
+    age: { type: String, default: "No info" },
+    bio: { type: String, default: "No bio" },
+    city: { type: String, default: "No info" },
+    country: { type: String, default: "No info" },
+    number: { type: String, default: "No info" }
 });
 
 userSchema.pre("save", async function (next) {

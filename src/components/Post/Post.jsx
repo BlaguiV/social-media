@@ -3,7 +3,10 @@ import man from '../../assets/man.jpg'
 import { MoreVert } from '@mui/icons-material'
 import postImg from "../../assets/man.jpg"
 import heart from '../../assets/love.png'
+import { useState, useEffect } from 'react'
+
 function Post() {
+
     return (
         <div className='post'>
             <div className='postWrapper'>

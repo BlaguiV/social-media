@@ -1,11 +1,16 @@
 import "./Topbar.css";
 import { Search, Person, Chat, Notifications } from "@mui/icons-material";
 import man from "../../assets/man.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Topbar() {
     const isAuthenticated = localStorage.getItem("token")
+    const navigate = useNavigate()
+    const handleProfile = () => {
+        navigate(`/profile/${currentUserId}`)
+    };
 
+    const currentUserId = localStorage.getItem("userId")
     return (
         <div className="topbarContainer">
             <div className="topbarLeft">
@@ -42,9 +47,7 @@ function Topbar() {
 
 
                 {isAuthenticated ? (
-                    <Link to="/profile/:username">
-                        <img src={man} alt="Profile" className="topbarImg" />
-                    </Link>
+                    <img onClick={handleProfile} src={man} alt="Profile" className="topbarImg" />
                 ) : (
                     <Link to="/login" style={{ textDecoration: "none" }}>
                         <span className="topbarLoginBtn">Log In</span>

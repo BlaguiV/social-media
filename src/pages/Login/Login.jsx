@@ -31,12 +31,17 @@ function Login() {
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        if (!email || !password) {
+            setError("Please enter both email and password");
+            return;
+        }
         try {
-            const response = await axios.post('http://localhost:5000/auth/login', { email, password })
-            const token = response.data.token
-            const userId = response.data.userId
-            localStorage.setItem("token", token)
-            localStorage.setItem("userId", userId)
+            const response = await axios.post('http://localhost:5000/auth/login', { email, password });
+            const token = response.data.token;
+            const userId = response.data.userId;
+
+            localStorage.setItem("token", token);
+            localStorage.setItem("userId", userId);
 
             if (rememberMe) {
                 localStorage.setItem("email", email);
@@ -46,12 +51,13 @@ function Login() {
                 localStorage.removeItem("password");
             }
 
-            navigate('/')
+            navigate('/');
         } catch (err) {
-            setError("Invalid email or password")
-            console.log(err)
+            setError("Invalid email or password");
+            console.log(err);
         }
     }
+
 
     return (
         <div className="login">

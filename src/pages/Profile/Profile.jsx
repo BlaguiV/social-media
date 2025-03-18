@@ -5,14 +5,13 @@ import Rightbar from "../../components/Rightbar/Rightbar";
 import Feed from "../../components/Feed/Feed";
 import cover from '../../assets/cover.jpg';
 import man from '../../assets/man.jpg';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 function Profile() {
     const { id } = useParams()
     const [userData, setUserData] = useState(null)
     const [loading, setLoading] = useState(true)
-
     const fetchUserData = async (userId) => {
         try {
             const response = await fetch(`http://localhost:5000/api/users/${userId}`);

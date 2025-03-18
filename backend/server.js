@@ -7,7 +7,7 @@ require("dotenv").config();
 
 const router = express.Router();
 
-//registration
+// registration
 router.post("/register", async (req, res) => {
     const { username, email, password, bio, age, city, country, number, avatar } = req.body;
 
@@ -19,9 +19,19 @@ router.post("/register", async (req, res) => {
                 .json({ message: "User with this email already exists" });
         }
 
-        const hashedPassword = await bcrypt.hash(password, 7)
+        const hashedPassword = await bcrypt.hash(password, 7);
 
-        const newUser = new User({ username, email, password: hashedPassword, bio, age, city, country, number, avatar });
+        const newUser = new User({
+            username,
+            email,
+            password: hashedPassword,
+            bio,
+            age,
+            city,
+            country,
+            number,
+            avatar,
+        });
         await newUser.save();
 
         res.status(201).json({ message: "User created successfully" });
@@ -30,7 +40,7 @@ router.post("/register", async (req, res) => {
     }
 });
 
-//login
+// login
 router.post("/login", async (req, res) => {
     const { email, password } = req.body;
 
@@ -54,7 +64,7 @@ router.post("/login", async (req, res) => {
     }
 });
 
-//get one user
+// get one user
 router.get("/user/:id", async (req, res) => {
     const { id } = req.params;
 
@@ -68,7 +78,8 @@ router.get("/user/:id", async (req, res) => {
         res.status(500).json({ message: "Server error", error: err.message });
     }
 });
-//get all users
+
+// get all users
 router.get("/users", async (req, res) => {
     try {
         const users = await User.find();
@@ -78,22 +89,48 @@ router.get("/users", async (req, res) => {
     }
 });
 
-//delete user
-
+// delete user
 router.delete("/delete/:id", async (req, res) => {
-
-    const { id } = req.params
+    const { id } = req.params;
 
     try {
-        const user = await User.findById(id)
+        const user = await User.findById(id);
         if (!user) {
-            return res.status(404).json({ message: "user not found" })
+            return res.status(404).json({ message: "User not found" });
         }
-        await User.findByIdAndDelete(id)
-        res.status(200).json({ message: "user delete" })
-    } catch (e) {
-        res.status(500).json({ message: "Server error" })
+        await User.findByIdAndDelete(id);
+        res.status(200).json({ message: "User deleted successfully" });
+    } catch (err) {
+        res.status(500).json({ message: "Server error", error: err.message });
     }
-})
+});
+
+// update user profile
+router.put("/usersupd/:id", async (req, res) => {
+    const { id } = req.params;
+    const { username, email, number, age, city, country, bio } = req.body;
+
+    try {
+        const user = await User.findById(id);
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        user.username = username || user.username;
+        user.email = email || user.email;
+        user.number = number || user.number;
+        user.age = age || user.age;
+        user.city = city || user.city;
+        user.country = country || user.country;
+        user.bio = bio || user.bio;
+
+        await user.save();
+
+        res.status(200).json({ message: "User profile updated successfully", user });
+    } catch (err) {
+        res.status(500).json({ message: "Server error", error: err.message });
+    }
+});
+
 
 module.exports = router;

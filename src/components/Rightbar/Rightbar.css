@@ -100,3 +100,14 @@
     text-align: center;
     gap: 5px;
 }
+
+.editButton {
+    color: white;
+    background-color: rgb(175, 8, 144);
+    font-style: 18px;
+    width: 150px;
+    height: 40px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}

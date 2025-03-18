@@ -1,16 +1,39 @@
 import './Share.css'
 import man from '../../assets/man.jpg'
 import { PermMedia, EmojiEmotions } from "@mui/icons-material"
+import { useState, useEffect } from 'react'
+
 function Share() {
-    const isAuthenticated = localStorage.getItem("token")
+    const isAuthenticated = localStorage.getItem("token");
+    const [userData, setUserData] = useState(null);
+    const userId = localStorage.getItem("userId") || null;
+
+    useEffect(() => {
+        const fetchUserData = async (userId) => {
+            try {
+                const response = await fetch(`http://localhost:5000/api/users/${userId}`);
+                if (!response.ok) throw new Error("Помилка завантаження користувача");
+                const data = await response.json();
+                setUserData(data);
+            } catch (e) {
+                console.log("Помилка отримання даних користувача:", e);
+            }
+        };
+
+        if (userId) {
+            fetchUserData(userId);
+        }
+    }, [userId]);
 
     return (
         isAuthenticated ? (
             <div className='share'>
                 <div className="shareWrapper">
                     <div className="shareTop">
-                        <img className='shareProfileImg' src={man} />
-                        <input className='shareInput' placeholder='What in your mind, Vladyslav?' />
+                        <img className='shareProfileImg' src={man} alt="Profile" />
+                        <input className='shareInput' placeholder={
+                            userData ? `What’s on your mind, ${userData.username}?` : "Loading..."
+                        } />
                     </div>
                     <hr className='shareHr' />
                     <div className="shareBottom">
